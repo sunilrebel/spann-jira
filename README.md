@@ -1,4 +1,4 @@
 spann-jira
 ==========
 
-A Jira Plug-in to extract jira details
+A Jira Plug-in to extract JIRA details.
