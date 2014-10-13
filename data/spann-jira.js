@@ -12,6 +12,14 @@ $(function(){
 
 
 function process() {
-    var str = $(document).xpath(".//*[@id='issuetable']/tbody/tr/td[3]").html();
-    alert(str)
+    var items=[];
+    $('#issuetable').find('tbody tr td:nth-child(2)').each( function(){
+        items.push( "https://jira.mongodb.org/browse/"+$(this).text() );
+    });
+    items = $.unique( items );
+    $.each( items, function(i, item){
+        if(i<4) {
+            console.log(item)
+        }
+    })
 }
