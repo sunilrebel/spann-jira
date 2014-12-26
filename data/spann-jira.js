@@ -5,8 +5,9 @@
 $(function(){
 
     setTimeout(function(){
-        process()
-    }, 10000)
+        //process()
+        alert("hello baby");
+    }, 1000)
 
 });
 
