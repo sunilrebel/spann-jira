@@ -21,16 +21,11 @@ self.port.on('startProcessing', function() {
 /* listeners */
 
 function process() {
-    switch (true) {
-        case true:
-            jiraListExtractor.startJiraListExtraction('onComplete', function(jiraList) {
-                processingComplete(jiraList);
-            });
-            break;
-
-        case false:
-            break;
-    }
+    setTimeout(function() {
+        jiraListExtractor.startJiraListExtraction('onComplete', function(jiraList) {
+            processingComplete(jiraList);
+        });
+    }, 5000);
 }
 
 function processingComplete(jiraList) {

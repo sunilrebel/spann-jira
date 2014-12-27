@@ -50,7 +50,7 @@ var jiraListExtractor = {
         var navigationSelector = 'div.pagination a.icon-next';
         var lastPageNumber;
         var processJiraList = this.processJiraList; // variable acting as a proxy otherwise
-                                                    // this.anything will be acting in setTimeout scope as it's element
+        var validateJiraId = this.validateJiraId;   // this.anything will be acting in setTimeout scope as it's element
 
         /* using interval for page navigation */
         var timer = setInterval(function() {
@@ -61,7 +61,8 @@ var jiraListExtractor = {
 
                 $(jiraElementSelector).each(function() {
                     var jiraId = $(this).attr(attributeSelector);
-                    jiraList.push(jiraId);
+                    if (validateJiraId(jiraId))
+                        jiraList.push(jiraId);
                 });
 
                 if ($(navigationSelector).length < 1) {
@@ -85,6 +86,10 @@ var jiraListExtractor = {
         }, 500);
 
         return jiraList;
+    },
+    validateJiraId: function(jiraId) {
+        var regex = new RegExp("^[a-zA-z]+-[\\d]+$");
+        return regex.test(jiraId);
     },
     processJiraList: function(callback) {
         console.log("Total # of jira found are : "+this.jiraList.length);
