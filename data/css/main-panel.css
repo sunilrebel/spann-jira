@@ -1,0 +1,14 @@
+body { padding: 0; margin: 0; text-align: justify; text-transform: lowercase; }
+.main-content { border: 1px solid black; width: 380px; height: 180px; margin: 0; padding: 10px; position: relative; overflow: hidden; }
+.row { width: 100%; padding: 0; float: none; display: block; overflow: hidden; }
+.hidden { display: none; }
+textarea { resize: none; }
+
+.logo { width: 64px; float: left; margin-right: 10px; margin-bottom: 10px; }
+.description { max-height: 170px; line-height: 21px; }
+
+.menu { overflow: hidden; display: block; width: auto; text-align: center; position: absolute; bottom: 0; border-top: 1px solid GrayText; height: 20px; }
+.menu ul { list-style-type: none; text-align: center; padding: 0; margin: 2px; }
+.menu ul li { display: inline; margin: 0 10px; color: blue; cursor: pointer; }
+.menu ul li:hover { color: black; text-decoration: overline; }
+.menu ul li.active { color: black; }

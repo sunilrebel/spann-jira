@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="../css/main-panel.css" type="text/css" rel="stylesheet">
+    <script src="../js/libs/jquery-2.1.1.min.js" type="application/javascript" language="JavaScript"></script>
+    <title>Spann Jira</title>
+</head>
+<body>
+
+    <div class="main-content">
+        <div id="content" class="row description">
+            <div id="about" class="tab">
+                <div class="logo"><img src="../logo/spann-jira-logo-64.png" /></div>
+                Hi this is the description of spann jira. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description.
+                its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description.
+                its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description.
+                its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description.
+            </div>
+            <div id="settings" class="tab hidden">
+                This is settings
+            </div>
+            <div id="process" class="tab hidden">
+                <form id="inputForm" onsubmit="return false;">
+                    <textarea name="inputUrl" rows="7" cols="42" wrap="off" placeholder="paste your dashboard/search url below (comma or new line separated)"></textarea><br>
+                    <button id="startProcessing">start processing</button>
+                </form>
+            </div>
+        </div>
+        <div class="row menu">
+            <ul>
+                <li class="active">About</li>
+                <li>Process</li>
+                <li>Settings</li>
+            </ul>
+        </div>
+    </div>
+    <script src="../js/main-panel.js" type="application/javascript" language="JavaScript"></script>
+</body>
+</html>

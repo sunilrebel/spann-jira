@@ -2,11 +2,33 @@
  * Created by sunil on 16-11-2014.
  */
 
-var extractButton = document.querySelector("#extractButton");
-var userInput = document.querySelector("#userInput");
+(function($){
+    $.fn.disableSelection = function() {
+        return this
+            .attr('unselectable', 'on')
+            .css('user-select', 'none')
+            .on('selectstart', false);
+    };
+})(jQuery);
 
-extractButton.addEventListener('click', function onclick(event) {
-    var input = userInput.value;
-    input = "https://jira.mongodb.org/issues/?jql=text%20~%20%22mongo%22";
-    self.port.emit("extractData", input);
+$('div.menu').disableSelection();
+
+/* adding tabs click functionality */
+$('div.menu li').each(function () {
+    $(this).click(function () {
+        var text = $(this).text().trim().toLowerCase();
+        $('div.menu li').removeClass('active');
+        $(this).addClass('active');
+        $('div#content div.tab').each(function(){
+            $(this).addClass('hidden');
+        });
+        $('div#' + text).removeClass('hidden');
+    });
+});
+
+/* adding input -start processing event */
+$("#startProcessing").click(function() {
+    var textArea = $("#inputForm textarea[name=inputUrl]");
+    var input = textArea.val();
+    self.port.emit('startProcessing',input);
 });
