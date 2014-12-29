@@ -2,7 +2,7 @@
  * Created by sunil on 12-10-2014.
  */
 
-var spannJiraSettings;
+var appSettings;
 
 /* on page load */
 $(function(){
@@ -12,7 +12,7 @@ $(function(){
 
 /* listeners */
 self.port.on('settings', function(settings){
-    spannJiraSettings = settings;
+    appSettings = settings;
 });
 self.port.on('startProcessing', function(){
     process();
@@ -24,14 +24,13 @@ self.port.on('exportToExcel', function(tableHtml) {
 
 /* events */
 $(document).dblclick(function(){
-    self.port.emit('getFinalDataJson'); 
     self.port.emit('exportToExcel');
 });
 /* events */
 
 function process() {
-    
-    switch (isUserInputRequired(spannJiraSettings)) {
+
+    switch (isUserInputRequired(appSettings)) {
         case true :
             // display fields & attach click event
             break;
@@ -44,7 +43,7 @@ function process() {
     function isUserInputRequired(settings) {
         return settings.userInputRequired;
     }
-    
+
     /*var items=[];
     $('#issuetable').find('tbody tr td:nth-child(2)').each( function(){
         items.push( "https://jira.mongodb.org/browse/"+$(this).text() );
@@ -58,5 +57,8 @@ function process() {
 }
 
 function processingComplete(jiraData) {
-    self.port.emit('processingComplete', jiraData);
+    self.port.emit('processingComplete', {
+        jiraData: jiraData,
+        spannCounter: appSettings.spannCounter
+    });
 }

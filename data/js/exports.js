@@ -1,7 +1,7 @@
 /**
  * Created by sunil on 12/26/2014.
  */
-    
+
 var metaHtml = '<meta http-equiv="content-type" content="text/plain; charset=UTF-8"/>';
 var tableToExcel = (function() {
     var uri = 'data:application/vnd.ms-excel;base64,'
@@ -18,7 +18,6 @@ var tableToExcel = (function() {
 })();
 
 function addTableAndExportToExcel(tableHtml) {
-    console.log('tableHTML: '+tableHtml);
     $('head').append(metaHtml);
     $('body').append(tableHtml);
     tableToExcel("spannJiraExportTable", "Spann Jira Exports", "Spann Jira Exports");

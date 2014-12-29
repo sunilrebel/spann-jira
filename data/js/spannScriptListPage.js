@@ -29,5 +29,8 @@ function process() {
 }
 
 function processingComplete(jiraList) {
-    self.port.emit('processingComplete', jiraList);
+    self.port.emit('processingComplete', {
+        jiraList: jiraList,
+        spannQueryCounter: appSettings.spannQueryCounter
+    });
 }

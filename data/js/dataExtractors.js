@@ -10,14 +10,14 @@ var jiraDataExtractor = {
         this.data.status = $("#status-val").text();
         this.data.resolution = $("#resolution-val").text();
         this.data.assignee = $("#assignee-val").text();
-        
+
         this.data = this.trimData(this.data);
         return this.data;
     },
     trimData: function(data) {
         var result = {};
         $.each(data, function(key, value) {
-            result[key] = value.trim(); 
+            result[key] = value.trim();
         });
         return result;
     }
