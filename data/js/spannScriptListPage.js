@@ -31,6 +31,13 @@ function process() {
 function processingComplete(jiraList) {
     self.port.emit('processingComplete', {
         jiraList: jiraList,
-        spannQueryCounter: appSettings.spannQueryCounter
+        spannQueryCounter: appSettings.spannQueryCounter,
+        baseUrl: fetchBaseUrl()
     });
+}
+
+function fetchBaseUrl() {
+    var url = window.location.toString();
+    var cutIndex = (url.indexOf("browse") > -1)? url.indexOf("browse") : url.indexOf("issues");
+    return url.substring(0, cutIndex);
 }

@@ -37,6 +37,7 @@ function process() {
         case false :
             var extractedData = jiraDataExtractor.getData();
             processingComplete(extractedData);
+            closeTab();
             break;
     }
 
@@ -59,6 +60,16 @@ function process() {
 function processingComplete(jiraData) {
     self.port.emit('processingComplete', {
         jiraData: jiraData,
-        spannQueryCounter: appSettings.spannQueryCounter
+        baseUrl: fetchBaseUrl()
     });
+}
+
+function fetchBaseUrl() {
+    var url = window.location.toString();
+    var baseUrl = url.substring(0, url.indexOf("browse"));
+    return baseUrl;
+}
+
+function closeTab() {
+    self.port.emit('closeTab');
 }
