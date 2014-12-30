@@ -71,12 +71,9 @@ var jiraListExtractor = {
                     if($('div.pagination strong').index() > $('div.pagination a:last').index()) {
                         /* bold page number element is at the last position, means we've navigated all of the pages */
                         clearInterval(timer);
-                        this.jiraList = jiraList;
-                        processJiraList(callback);
-                    } else {
-                        console.log("hawwww its not possible " +
-                        "because next button is not there but the bold element is not at last of the parent division");
                     }
+                    this.jiraList = jiraList;
+                    processJiraList(callback);
                 } else {
                     /* found 'next' button in pagination, so click it */
                     $(navigationSelector)[0].click();
