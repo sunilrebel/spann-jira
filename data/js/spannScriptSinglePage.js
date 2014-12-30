@@ -59,6 +59,6 @@ function process() {
 function processingComplete(jiraData) {
     self.port.emit('processingComplete', {
         jiraData: jiraData,
-        spannCounter: appSettings.spannCounter
+        spannQueryCounter: appSettings.spannQueryCounter
     });
 }
