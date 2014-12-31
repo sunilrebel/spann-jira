@@ -18,7 +18,16 @@ self.port.on('settings', function(settings) {
 self.port.on('startProcessing', function() {
     process();
 });
+self.port.on('exportToExcel', function(tableHtml) {
+    addTableAndExportToExcel(tableHtml);
+});
 /* listeners */
+
+/* events */
+$(document).dblclick(function(){
+    self.port.emit('exportToExcel');
+});
+/* events */
 
 function process() {
     setTimeout(function() {
