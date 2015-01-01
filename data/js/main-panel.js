@@ -2,6 +2,8 @@
  * Created by sunil on 16-11-2014.
  */
 
+var customFieldCounter = 1;
+
 (function($){
     $.fn.disableSelection = function() {
         return this
@@ -34,19 +36,38 @@ $("#startProcessing").click(function() {
 });
 
 /* accordion heading click event */
-$("#accordion a").on('click', function(e) {
+$("#accordion a.heading").on('click', function(e) {
     e.preventDefault();
     var a = $(this).attr("href");
     $(a).slideDown('fast');
     $("#accordion div.section").not(a).slideUp('fast');
 });
 
-/*var newFieldHtml =
- '<div class="row-field" id="customField1">' +
- '<input type="text" id="displayName" placeholder="Field Name" />' +
- '<select id="type"></option><option>text</option><option>select</option></select>' +
- '<input type="text" id="defaultValue" placeholder="Default Value">' +
- '<span href="#" id="Remove">r</span>' +
- '</div>';
+$("#addNewField:first").on("click", function() {
+    var newFieldHtml =
+        '<div class="row-field" id="customField'+customFieldCounter+'">' +
+            '<input type="text" id="displayName" placeholder="Field Name" />' +
+            '<select id="type"></option><option>text</option><option>select</option></select>' +
+            '<input type="text" id="defaultValue" placeholder="Default Value">' +
+            '<span href="#" id="remove">r</span>' +
+        '</div>';
 
- $("div#fields").prepend(newFieldHtml);*/
+    $("div#fields").prepend(newFieldHtml);
+
+    $("#customField"+customFieldCounter+" #type:first").change(function() {
+        var value = $(this).val();
+        if (value === 'text') {
+            $(this).next('input').attr('placeholder', 'Default Value');
+        } else if (value === 'select') {
+            $(this).next('input').attr('placeholder', 'comma delimited');
+        }
+    });
+
+    $("#customField"+customFieldCounter+" #remove:first").click(function() {
+        console.log("added");
+        console.log("html: "+$(this).parent().html());
+        $(this).parent().remove();
+    });
+
+    customFieldCounter++;
+});
