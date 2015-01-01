@@ -16,31 +16,45 @@ self.port.on('settings', function(settings) {
     appSettings = settings;
 });
 self.port.on('startProcessing', function() {
-    process();
+    setInterval(function() {
+        if($('a#spann-export').length < 1) {
+            addHtml();
+        }
+    }, 3000);
 });
 self.port.on('exportToExcel', function(tableHtml) {
     addTableAndExportToExcel(tableHtml);
 });
 /* listeners */
 
-/* events */
-$(document).dblclick(function(){
-    self.port.emit('exportToExcel');
-});
-/* events */
-
 function process() {
-    setTimeout(function() {
-        jiraListExtractor.startJiraListExtraction('onComplete', function(jiraList) {
-            processingComplete(jiraList);
-        });
-    }, 5000);
+    jiraListExtractor.startJiraListExtraction('onComplete', function(jiraList) {
+        processingComplete(jiraList);
+    });
+}
+
+function exportToExcel() {
+    self.port.emit('exportToExcel');
+}
+
+function addHtml() {
+    var processButtonHtml = '<li><a class="aui-button" href="#" title="Process Jira List" id="spann-process">Process</a></li>';
+    var exportButtonHtml = '<li><a class="aui-button" href="#" title="Export Data" id="spann-export">Export</a></li>';
+
+    $("div#search-header-view ul.filter-operations:first").append(processButtonHtml);
+    $("div#search-header-view ul.filter-operations:first").append(exportButtonHtml);
+
+    $("a#spann-process").click(function() {
+        process();
+    });
+    $("a#spann-export").click(function() {
+        exportToExcel();
+    });
 }
 
 function processingComplete(jiraList) {
     self.port.emit('processingComplete', {
         jiraList: jiraList,
-        spannQueryCounter: appSettings.spannQueryCounter,
         baseUrl: fetchBaseUrl()
     });
 }

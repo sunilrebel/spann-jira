@@ -11,6 +11,14 @@ var jiraDataExtractor = {
         this.data.resolution = $("#resolution-val").text();
         this.data.assignee = $("#assignee-val").text();
 
+        var data = this.data; // proxy for jquery each, cannot use this.data
+        /* extract custom field values */
+        $("div#spannCustomFields div.mod-content ul:first li").each(function() {
+            var key = $(this).find('strong.name').text().replace(":","");
+            var value = $(this).find('.spannValue').val();
+            data[key] = value;
+        });
+
         this.data = this.trimData(this.data);
         return this.data;
     },
