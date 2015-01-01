@@ -32,3 +32,21 @@ $("#startProcessing").click(function() {
     var input = textArea.val();
     self.port.emit('startProcessing',input);
 });
+
+/* accordion heading click event */
+$("#accordion a").on('click', function(e) {
+    e.preventDefault();
+    var a = $(this).attr("href");
+    $(a).slideDown('fast');
+    $("#accordion div.section").not(a).slideUp('fast');
+});
+
+/*var newFieldHtml =
+ '<div class="row-field" id="customField1">' +
+ '<input type="text" id="displayName" placeholder="Field Name" />' +
+ '<select id="type"></option><option>text</option><option>select</option></select>' +
+ '<input type="text" id="defaultValue" placeholder="Default Value">' +
+ '<span href="#" id="Remove">r</span>' +
+ '</div>';
+
+ $("div#fields").prepend(newFieldHtml);*/

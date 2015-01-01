@@ -1,4 +1,4 @@
-body { padding: 0; margin: 0; text-align: justify; text-transform: lowercase; }
+body { padding: 0; margin: 0; text-align: justify; text-transform: lowercase !important; }
 .main-content { border: 1px solid black; width: 380px; height: 180px; margin: 0; padding: 10px; position: relative; overflow: hidden; }
 .row { width: 100%; padding: 0; float: none; display: block; overflow: hidden; }
 .hidden { display: none; }
@@ -12,3 +12,16 @@ textarea { resize: none; }
 .menu ul li { display: inline; margin: 0 10px; color: blue; cursor: pointer; }
 .menu ul li:hover { color: black; text-decoration: overline; }
 .menu ul li.active { color: black; }
+
+.tab { overflow: auto; max-height: 160px; }
+
+#accordion { margin-top:10px; border:thin solid #cecece; border-top:none; border-bottom:none; width: 350px; }
+#accordion div.section { background:white; display:none; border-bottom:thin solid #cecece; padding-left:15px; }
+#accordion a { display:block; background:#f4f4f4; background-image: -webkit-linear-gradient(white #ededed); background-image: -moz-linear-gradient(white #ededed);
+    background-image: -o-linear-gradient(white #ededed); background-image: -ms-linear-gradient(white #ededed); background-image:linear-gradient(white #ededed); color:#959696;
+    padding-left:15px; height:40px; line-height:40px; text-decoration:none; border-bottom:thin solid #cecece; font-family:Arial; font-size:13px; font-weight:bold; text-shadow:0px 1px 1px white; }
+.first { border-top:thin solid #cecece; }
+
+#addNewField { cursor: pointer; width: 60px; }
+.section { padding-top: 15px; padding-bottom: 15px; }
+.row-field input, .row-field select { display: inline-block; max-width: 100px; background: #f4f4f4; border: 1px solid gray; padding-left: 10px; margin: 2px; }

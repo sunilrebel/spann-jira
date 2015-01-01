@@ -97,7 +97,7 @@ function addSpannJiraSection() {
         '<div id="spannCustomFields" class="module toggle-wrap">' +
             '<div class="mod-header" id="spannCustomFields-module_heading">' +
                 '<ul class="ops"></ul>' +
-                '<h2 class="toggle-title">Spann Jira - CustomFields</h2>' +
+                '<h2 class="toggle-title">Spann Fields</h2>' +
             '</div>' +
             '<div class="mod-content">' +
                 '<ul id="customFields" class="property-list two-cols">' +                    
@@ -110,7 +110,7 @@ function addSpannJiraSection() {
     var saveButtonHtml = 
         '<li class="toolbar-item">' +
             '<a href="#" class="toolbar-trigger issueaction-greenhopper-rapidboard-operation js-rapidboard-operation-issue" title="Save Jira Details" id="spann-save">' +
-                '<span class="trigger-label">Spann Save</span>' +
+                '<span class="trigger-label">Save</span>' +
             '</a>' +
         '</li>';
     
