@@ -16,7 +16,7 @@ textarea { resize: none; }
 .tab { overflow: auto; max-height: 160px; }
 
 #accordion { margin-top:10px; border:thin solid #cecece; border-top:none; border-bottom:none; width: 350px; }
-#accordion div.section { background:white; display:none; border-bottom:thin solid #cecece; padding-left:15px; }
+#accordion div.section { background:white; display:none; border-bottom:thin solid #cecece; padding-left:5px; }
 #accordion a.heading { display:block; background:#f4f4f4; background-image: -webkit-linear-gradient(white #ededed); background-image: -moz-linear-gradient(white #ededed);
     background-image: -o-linear-gradient(white #ededed); background-image: -ms-linear-gradient(white #ededed); background-image:linear-gradient(white #ededed); color:#959696;
     padding-left:15px; height:40px; line-height:40px; text-decoration:none; border-bottom:thin solid #cecece; font-family:Arial; font-size:13px; font-weight:bold; text-shadow:0px 1px 1px white; }
@@ -24,4 +24,4 @@ textarea { resize: none; }
 
 #addNewField { cursor: pointer; width: 60px; }
 .section { padding-top: 15px; padding-bottom: 15px; }
-.row-field input, .row-field select { display: inline-block; max-width: 102px; background: #f4f4f4; border: 1px solid gray; padding-left: 5px; margin: 2px; }
+.row-field input, .row-field select { display: inline-block; max-width: 102px; background: #f4f4f4; border: 1px solid gray; padding-left: 2px; margin: 2px; }

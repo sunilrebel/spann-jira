@@ -4,6 +4,12 @@
 
 var customFieldCounter = 1;
 
+/* self port listeners */
+self.port.on('removedCustomField', function(data) {
+    var parentId = data.parentId;
+    $('#'+parentId).remove();
+});
+/* self port listeners */
 (function($){
     $.fn.disableSelection = function() {
         return this
@@ -46,13 +52,26 @@ $("#accordion a.heading").on('click', function(e) {
 $("#addNewField:first").on("click", function() {
     var newFieldHtml =
         '<div class="row-field" id="customField'+customFieldCounter+'">' +
+            '<input type="checkbox" id="isEnabled" />' +
             '<input type="text" id="displayName" placeholder="Field Name" />' +
             '<select id="type"></option><option>text</option><option>select</option></select>' +
             '<input type="text" id="defaultValue" placeholder="Default Value">' +
-            '<span href="#" id="remove">r</span>' +
+            '<a href="#" id="remove"><img src="../images/open29.png" /></a>' +
         '</div>';
 
     $("div#fields").prepend(newFieldHtml);
+
+    $("#customField"+customFieldCounter+" #isEnabled").change(function() {
+        if (validateCustomFieldData($(this).parent())) {
+            saveCustomField($(this).parent());
+        }
+    });
+
+    $("#customField"+customFieldCounter+" #displayName").keyup(function() {
+        if (validateCustomFieldData($(this).parent())) {
+            saveCustomField($(this).parent());
+        }
+    });
 
     $("#customField"+customFieldCounter+" #type:first").change(function() {
         var value = $(this).val();
@@ -61,13 +80,53 @@ $("#addNewField:first").on("click", function() {
         } else if (value === 'select') {
             $(this).next('input').attr('placeholder', 'comma delimited');
         }
+        if (validateCustomFieldData($(this).parent())) {
+            saveCustomField($(this).parent());
+        }
+    });
+
+    $('#customField'+customFieldCounter+' #defaultValue').keyup(function() {
+        if (validateCustomFieldData($(this).parent())) {
+            saveCustomField($(this).parent());
+        }
     });
 
     $("#customField"+customFieldCounter+" #remove:first").click(function() {
-        console.log("added");
-        console.log("html: "+$(this).parent().html());
-        $(this).parent().remove();
+        removeCustomField($(this).parent());
     });
 
     customFieldCounter++;
 });
+
+function validateCustomFieldData(parent) {
+    return true;
+}
+
+function saveCustomField(parent) {
+    var customFieldId = parent.attr('id').replace(/[^\d]+/i,'');
+
+    var displayName = parent.find('input#displayName').val();
+    var type = parent.find('select#type').val();
+    var isEnabled = parent.find('input#isEnabled').is(':checked');
+    var defaultValue = parent.find('input#defaultValue').val();
+    if (type === "select") {
+        defaultValue = defaultValue.split(",");
+    }
+    var data = {
+        id: customFieldId+'-val',
+        displayName: displayName,
+        type: type,
+        valueRegex: null,
+        valueXPath: null,
+        defaultValue: defaultValue,
+        isEnabled: isEnabled
+    };
+    self.port.emit('saveCustomField', data);
+}
+
+function removeCustomField(parent) {
+    var data = {
+        parentId: parent.attr('id')
+    };
+    self.port.emit('removeCustomField', data);
+}
