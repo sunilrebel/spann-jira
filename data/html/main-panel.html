@@ -21,7 +21,15 @@
                 <div id="accordion">
                     <a href="#basic" class="first heading">Basic Settings</a>
                     <div id="basic" class="section">
-                        this is some info.
+                        <div class="switch">
+                            <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                            <label for="cmn-toggle-1"></label>
+                        </div>
+
+                        <div class="switch">
+                            <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+                            <label for="cmn-toggle-4"></label>
+                        </div>
                     </div>
 
                     <a href="#customFields" class="heading">Custom Fields</a>
@@ -35,7 +43,7 @@
             </div>
             <div id="process" class="tab hidden">
                 <form id="inputForm" onsubmit="return false;">
-                    <textarea name="inputUrl" rows="7" cols="42" wrap="off" placeholder="paste your dashboard/search url below (comma or new line separated)"></textarea><br>
+                    <textarea name="inputUrl" rows="6" cols="42" wrap="off" placeholder="paste your dashboard/search url below (comma or new line separated)"></textarea><br>
                     <button id="startProcessing">start processing</button>
                 </form>
             </div>

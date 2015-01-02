@@ -9,6 +9,13 @@ self.port.on('removedCustomField', function(data) {
     var parentId = data.parentId;
     $('#'+parentId).remove();
 });
+
+self.port.on('settings', function(settings) {
+    var customFields = settings.customFields;
+    for (var i in customFields) {
+        addCustomField(customFields[i]);
+    }
+});
 /* self port listeners */
 (function($){
     $.fn.disableSelection = function() {
@@ -50,14 +57,47 @@ $("#accordion a.heading").on('click', function(e) {
 });
 
 $("#addNewField:first").on("click", function() {
-    var newFieldHtml =
-        '<div class="row-field" id="customField'+customFieldCounter+'">' +
-            '<input type="checkbox" id="isEnabled" />' +
-            '<input type="text" id="displayName" placeholder="Field Name" />' +
-            '<select id="type"></option><option>text</option><option>select</option></select>' +
-            '<input type="text" id="defaultValue" placeholder="Default Value">' +
-            '<a href="#" id="remove"><img src="../images/open29.png" /></a>' +
-        '</div>';
+    addCustomField();
+});
+
+function addCustomField(singleField) {
+    var newFieldHtml = "";
+    if (singleField !== undefined) {
+        var textSelected = "";
+        var selectSelected = "";
+        if (singleField.type === "text") {
+            textSelected = "selected";
+        } else if (singleField.type === "select") {
+            selectSelected = "selected";
+        }
+        
+        var checkBoxChecked = "";
+        if (singleField.isEnabled) {
+            checkBoxChecked = "checked";
+        }
+        
+        if (Number(singleField.id) > customFieldCounter) {
+            customFieldCounter = Number(singleField.id);
+        }
+        
+        newFieldHtml =
+            '<div class="row-field" id="customField'+singleField.id+'">' +
+                '<input type="checkbox" id="isEnabled" '+checkBoxChecked+'/>' +
+                '<input type="text" id="displayName" placeholder="Field Name" value="'+singleField.displayName+'" />' +
+                '<select id="type"><option '+textSelected+'>text</option><option '+selectSelected+'>select</option></select>' +
+                '<input type="text" id="defaultValue" placeholder="Default Value" value="'+singleField.defaultValue+'">' +
+                '<a href="#" id="remove"><img src="../images/open29.png" /></a>' +
+            '</div>';
+    } else {
+        newFieldHtml =
+            '<div class="row-field" id="customField'+customFieldCounter+'">' +
+                '<input type="checkbox" id="isEnabled" />' +
+                '<input type="text" id="displayName" placeholder="Field Name" />' +
+                '<select id="type"><option>text</option><option>select</option></select>' +
+                '<input type="text" id="defaultValue" placeholder="Default Value">' +
+                '<a href="#" id="remove"><img src="../images/open29.png" /></a>' +
+            '</div>';
+    }
 
     $("div#fields").prepend(newFieldHtml);
 
@@ -94,9 +134,9 @@ $("#addNewField:first").on("click", function() {
     $("#customField"+customFieldCounter+" #remove:first").click(function() {
         removeCustomField($(this).parent());
     });
-
+    
     customFieldCounter++;
-});
+}
 
 function validateCustomFieldData(parent) {
     return true;
@@ -113,11 +153,10 @@ function saveCustomField(parent) {
         defaultValue = defaultValue.split(",");
     }
     var data = {
-        id: customFieldId+'-val',
+        id: customFieldId,
         displayName: displayName,
         type: type,
         valueRegex: null,
-        valueXPath: null,
         defaultValue: defaultValue,
         isEnabled: isEnabled
     };
@@ -130,3 +169,4 @@ function removeCustomField(parent) {
     };
     self.port.emit('removeCustomField', data);
 }
+self.port.emit('getSettings');

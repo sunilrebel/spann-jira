@@ -19,6 +19,8 @@ var tableToExcel = (function() {
 
 function addTableAndExportToExcel(tableHtml) {
     $('head').append(metaHtml);
+    $("#spannJiraExportTable").remove();
+    $("#spannJiraExportAnchor").remove();
     $('body').append(tableHtml);
     tableToExcel("spannJiraExportTable", "Spann Jira Exports", "Spann Jira Exports");
 }
