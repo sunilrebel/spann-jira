@@ -10,26 +10,44 @@
 
     <div class="main-content">
         <div id="content" class="row description">
-            <div id="about" class="tab">
+            <div id="about" class="tab hidden">
                 <div class="logo"><img src="../logo/spann-jira-logo-64.png" /></div>
                 Hi this is the description of spann jira. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description.
                 its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description.
                 its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description.
                 its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description. its a long long description.
             </div>
-            <div id="settings" class="tab hidden">
+            <div id="settings" class="tab">
                 <div id="accordion">
                     <a href="#basic" class="first heading">Basic Settings</a>
                     <div id="basic" class="section">
-                        <div class="switch">
-                            <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                            <label for="cmn-toggle-1"></label>
+                        <div class="row">
+                            Enable Spann-Jira?
+                            <div class="switch">
+                                <input id="enableSpannJira" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                <label for="enableSpannJira"></label>
+                            </div>
                         </div>
-
-                        <div class="switch">
-                            <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
-                            <label for="cmn-toggle-4"></label>
+                        <div class="row">
+                            User Input Required?
+                            <div class="switch">
+                                <input id="userInputRequired" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                                <label for="userInputRequired"></label>
+                            </div>
                         </div>
+                        <div class="row">
+                            Number of jira to process simultaneously
+                            <div class="switch">
+                                <input id="numberOfJiraToProcessTogether" style="width: 20px; margin-right: 10px;" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            Base Jira URL
+                            <div class="switch">
+                                <input id="baseJiraUrl" style="width: 200px;" type="text">
+                            </div>
+                        </div>
+                        <div id="error" class="row error"></div>
                     </div>
 
                     <a href="#customFields" class="heading">Custom Fields</a>
