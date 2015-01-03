@@ -211,7 +211,7 @@ function saveSettings() {
 
     var settings = {
         isEnabled: enableSpannJira,
-        numberOfJiraToProcessTogether: jiraToProcessTogether,
+        numberOfJiraToProcessTogether: Number(jiraToProcessTogether),
         userInputRequired: userInputRequired,
         baseJiraUrl: baseJiraUrl
     };
