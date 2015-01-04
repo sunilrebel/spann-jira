@@ -17,6 +17,10 @@ self.port.on('settings', function (settings) {
         addCustomField(customFields[i]);
     }
 });
+
+self.port.on('exportToExcel', function (tableHtml) {
+    addTableAndExportToExcel(tableHtml);
+});
 /* self port listeners */
 (function ($) {
     $.fn.disableSelection = function () {
@@ -59,6 +63,10 @@ $("#startProcessing").click(function () {
     var textArea = $("#inputForm textarea[name=inputUrl]");
     var input = textArea.val();
     self.port.emit('startProcessing', input);
+});
+
+$("#exportResults").click(function() {
+    self.port.emit('exportToExcel');
 });
 
 /* accordion heading click event */

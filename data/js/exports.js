@@ -11,8 +11,9 @@ var tableToExcel = (function() {
     return function(table, filename, sheetName) {
         if (!table.nodeType) table = document.getElementById(table);
         var ctx = {worksheet: sheetName || 'Worksheet', table: table.innerHTML};
-        var anchorHtml = '<a id="spannJiraExportAnchor" download="'+filename+'.xls" href="'+uri + base64(format(template, ctx))+'" style="display: block">myanchor</a>';
+        var anchorHtml = '<a id="spannJiraExportAnchor" download="'+filename+'.xls" href="'+uri + base64(format(template, ctx))+'" style="display: none">myanchor</a>';
         $('body').append(anchorHtml);
+        table.remove();
         $("#spannJiraExportAnchor")[0].click();
     }
 })();
