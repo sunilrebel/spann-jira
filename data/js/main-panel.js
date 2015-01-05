@@ -116,6 +116,7 @@ function addCustomField(singleField) {
             '<input type="text" id="displayName" placeholder="Field Name" />' +
             '<select id="type"><option>text</option><option>select</option></select>' +
             '<input type="text" id="defaultValue" placeholder="Default Value">' +
+            '<input type="checkbox" id="useRegEx" />' +
             '<a href="#" id="remove"><img src="../images/open29.png" /></a>' +
             '</div>';
     }
@@ -147,6 +148,12 @@ function addCustomField(singleField) {
     });
 
     $('#customField' + customFieldCounter + ' #defaultValue').keyup(function () {
+        if (validateCustomFieldData($(this).parent())) {
+            saveCustomField($(this).parent());
+        }
+    });
+
+    $('#customField' + customFieldCounter + ' #useRegEx').change(function () {
         if (validateCustomFieldData($(this).parent())) {
             saveCustomField($(this).parent());
         }
@@ -196,7 +203,14 @@ function saveCustomField(parent) {
     var displayName = parent.find('input#displayName').val();
     var type = parent.find('select#type').val();
     var isEnabled = parent.find('input#isEnabled').is(':checked');
-    var defaultValue = parent.find('input#defaultValue').val();
+    var defaultValue = null;
+    var valueRegex = null;
+    var useRegEx = parent.find('input#useRegEx').is(':checked');
+    if (useRegEx) {
+        valueRegex = parent.find('input#defaultValue').val();
+    } else {
+        defaultValue = parent.find('input#defaultValue').val();
+    }
     if (type === "select") {
         defaultValue = defaultValue.split(",");
     }
@@ -204,7 +218,7 @@ function saveCustomField(parent) {
         id: customFieldId,
         displayName: displayName,
         type: type,
-        valueRegex: null,
+        valueRegex: valueRegex,
         defaultValue: defaultValue,
         isEnabled: isEnabled
     };
