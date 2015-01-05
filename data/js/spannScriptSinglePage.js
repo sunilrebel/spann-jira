@@ -71,7 +71,16 @@ function getInputFieldHtml(field, isRight) {
 
     switch (field.type) {
         case "text" :
-            inputHtml = '<input class="spannValue" type="text" id="' + field.id + '" value="' + field.defaultValue + '" style="width: 90%;" />';
+            if (field.valueRegex) {
+                var bodyHtml = document.getElementsByTagName('body')[0].innerHTML;
+                var valueExtracted = bodyHtml.match(new RegExp(field.valueRegex, "g"));
+                if (!valueExtracted) {
+                    valueExtracted = '';
+                }
+                inputHtml = '<input class="spannValue" type="text" id="' + field.id + '" value="' + valueExtracted.toString() + '" style="width: 90%;" />';
+            } else {
+                inputHtml = '<input class="spannValue" type="text" id="' + field.id + '" value="' + field.defaultValue + '" style="width: 90%;" />';
+            }
             break;
 
         case "select" :
