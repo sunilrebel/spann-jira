@@ -1,4 +1,4 @@
-body { padding: 0; margin: 0; text-align: justify; text-transform: lowercase !important; }
+body { padding: 0; margin: 0; text-align: justify; text-transform: lowercase; }
 .main-content { border: 1px solid black; width: 380px; height: 180px; margin: 0; padding: 10px; position: relative; overflow: hidden; }
 .row { width: 100%; padding: 0; float: none; display: block; overflow: hidden; margin-bottom: 5px; }
 .hidden { display: none; }
