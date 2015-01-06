@@ -1,9 +1,9 @@
 {
   "name": "spann-jira",
   "title": "spann-jira",
-  "id": "spann-jira",
-  "description": "a basic add-on",
-  "author": "",
+  "id": "spann-jira@spann.in",
+  "description": "Customize your jira page by adding new custom fields with default value or regular expression with Spann Jira.",
+  "author": "Sunil",
   "license": "MPL 2.0",
-  "version": "0.1"
+  "version": "1.0"
 }
